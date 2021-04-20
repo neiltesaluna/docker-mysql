@@ -3,6 +3,8 @@ version: '3'
 services: 
     frontend:
         build: ./project
+        environment: 
+            SQLALCHEMY_DATABASE_URI: '...'
         volumes: 
             - ./project:/usr/src/app
         ports:
@@ -22,7 +24,11 @@ services:
             - '3306:3306'
         expose:
             - '3306'
-        volumes:
-            - my-db:/var/lib/mysql   
-volumes:
-    my-db:
+
+# if you need a persistent volume you can mount to to /var/lib/mysql, where by default
+# MySQL writes all its data files
+#
+#         volumes:
+#             - my-db:/var/lib/mysql   
+# volumes:
+#     my-db:
