@@ -12,17 +12,17 @@ services:
     database:
         image: mysql:8
         restart: always
+        
         environment:
             MYSQL_DATABASE: 'testdb'
-            MYSQL_USER: 'admin'
-            MYSQL_ROOT_PASSWORD: 'examplepassword'
-        expose:
-            - 3306
+            MYSQL_USER: 'user'
+            MYSQL_PASSWORD: 'password'
+            MYSQL_ROOT_PASSWORD: 'password'
         ports:
-            - 3306:3306
+            - '3306:3306'
+        expose:
+            - '3306'
         volumes:
-            - testdb:/var/lib/mysql
-        
-# Names our volume
+            - my-db:/var/lib/mysql   
 volumes:
-testdb:
+    my-db:
