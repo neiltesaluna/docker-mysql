@@ -4,7 +4,9 @@ services:
     frontend:
         build: ./project
         environment: 
-            SQLALCHEMY_DATABASE_URI: '...'
+            MYSQL_USER: 'user'
+            MYSQL_PASSWORD: 'password'
+            MYSQL_DATABASE: 'testdb'
         volumes: 
             - ./project:/usr/src/app
         ports:
@@ -14,7 +16,6 @@ services:
     database:
         image: mysql:8
         restart: always
-        
         environment:
             MYSQL_DATABASE: 'testdb'
             MYSQL_USER: 'user'
@@ -25,10 +26,7 @@ services:
         expose:
             - '3306'
 
-# if you need a persistent volume you can mount to to /var/lib/mysql, where by default
-# MySQL writes all its data files
-#
-#         volumes:
-#             - my-db:/var/lib/mysql   
-# volumes:
-#     my-db:
+        volumes:
+            - flask-db:/var/lib/mysql   
+volumes:
+    flask-db:
