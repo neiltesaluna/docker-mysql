@@ -26,10 +26,10 @@ db.create_all()
 def home():
     
     try:
-        greetings = greetings.query.all()
+        greetings = Greetings.query.all()
         
     except:
-        greetings = [{'sayhi':'I can\'t understand you'}]
+        greetings = [{'sayhi':'I can\'t understand you, seems like the database is empty'}]
 
     return render_template('index.html', greetings = greetings)
 
