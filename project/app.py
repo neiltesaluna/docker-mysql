@@ -7,9 +7,9 @@ app = Flask('__main__')
 
 dbuser = os.environ.get('MYSQL_USER')
 dbpassword = os.environ.get('MYSQL_PASSWORD')
-dbname = os.environ.get('testdb')
+dbname = os.environ.get('MYSQL_DATABASE')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{dbuser}:{dbpassword}@database/{dbname}?charset=utf8mb4'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{dbuser}:{dbpassword}@database:3306/{dbname}?charset=utf8mb4'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -18,7 +18,7 @@ class Greetings(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sayhi = db.Column(db.String(20), nullable=False)
 
-db.create_all(checkfirst=True)
+db.create_all()
 
 @app.route('/', methods=['GET'])
 def home():
