@@ -1,0 +1,28 @@
+version: '3'
+
+services: 
+    frontend:
+        build: ./project
+        volumes: 
+            - ./project:/usr/src/app
+        ports:
+            - 5000:5000
+        command: python ./app.py
+
+    database:
+        image: mysql:8
+        restart: always
+        environment:
+            MYSQL_DATABASE: 'testdb'
+            MYSQL_USER: 'admin'
+            MYSQL_ROOT_PASSWORD: 'examplepassword'
+        expose:
+            - 3306
+        ports:
+            - 3306:3306
+        volumes:
+            - testdb:/var/lib/mysql
+        
+# Names our volume
+volumes:
+testdb:
