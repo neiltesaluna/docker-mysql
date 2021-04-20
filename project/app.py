@@ -9,7 +9,9 @@ dbuser = os.environ.get('MYSQL_USER')
 dbpassword = os.environ.get('MYSQL_PASSWORD')
 dbname = os.environ.get('MYSQL_DATABASE')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{dbuser}:{dbpassword}@database:3306/{dbname}?charset=utf8mb4'
+dbpath = f'mysql+pymysql://{dbuser}:{dbpassword}@database:3306/{dbname}?charset=utf8mb4'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = dbpath
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
