@@ -6,7 +6,7 @@ The application uses the Flask SQL Alchemy ORM in combination with PyMySQL to co
 Start the containers using: `> docker-compose up`  
 <br />
 ## Adding data into the database
-Using curl to add data into the database. Note that the **/add* route only accepts POST requests  
+Using curl to add data into the database. Note that the */add* route only accepts POST requests  
 **Form Data:** `> curl -X POST -d 'greeting=Hello' http://localhost:5000/add`  
 **JSON Data:** `> curl -X POST -d '{"greeting":"Hello"}' http://localhost:5000/add`  
 **Query String Data:** `> curl -X POST http://localhost:5000/add?greeting=Hello`  
